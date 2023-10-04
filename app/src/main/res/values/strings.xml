@@ -1,3 +1,8 @@
 <resources>
+    <!--Global-->
     <string name="app_name">PhotoShow</string>
+
+    <!--Photos Fragment-->
+    <string name="photos_title">Photos</string>
+    <string name="your_photos_sub_title">Your photos:</string>
 </resources>

@@ -1,10 +1,12 @@
-package com.example.rememberme
+package com.example.photoshow
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.DiffUtil
+import com.bumptech.glide.Glide
 
 inline fun <T : Any> basicDiffUtil(
     crossinline areItemsTheSame: (T, T) -> Boolean = { old, new -> old == new },
@@ -15,6 +17,10 @@ inline fun <T : Any> basicDiffUtil(
 
     override fun areContentsTheSame(oldItem: T, newItem: T): Boolean =
         areContentsTheSame(oldItem, newItem)
+}
+
+fun ImageView.loadUrl(url: String) {
+    Glide.with(context).load(url).into(this)
 }
 
 fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = true): View =
