@@ -1,4 +1,4 @@
-package com.example.photoshow
+package com.example.photoshow.ui.splash
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -7,8 +7,11 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import com.example.photoshow.databinding.ActivitySplashScreenBinding
+import com.example.photoshow.ui.NavHostActivity
+import dagger.hilt.android.AndroidEntryPoint
 
 @SuppressLint("CustomSplashScreen")
+@AndroidEntryPoint
 class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
