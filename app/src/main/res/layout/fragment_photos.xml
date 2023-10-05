@@ -7,7 +7,7 @@
     android:paddingHorizontal="@dimen/common_padding_default"
     android:paddingTop="@dimen/common_padding_min"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".photos.PhotosFragment">
+    tools:context=".ui.photos.PhotosFragment">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/lyHeaders"
@@ -75,7 +75,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

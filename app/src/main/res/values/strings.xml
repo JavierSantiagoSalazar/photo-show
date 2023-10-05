@@ -5,4 +5,16 @@
     <!--Photos Fragment-->
     <string name="photos_title">Photos</string>
     <string name="your_photos_sub_title">Your photos:</string>
+    <string name="snack_bar_try_again_message">Try again</string>
+    <string name="snack_bar_dismiss_message">Dismiss</string>
+    <string name="connectivity_error">Looks like you don\'t have internet connection, please try again.</string>
+    <string name="server_error">"Internal server error with code: "</string>
+    <string name="unknown_error">"Unknown error: "</string>
+
+    <!--Detail Fragment-->
+    <string name="detail_photo_title">Photo title</string>
+    <string name="detail_album_id">Album ID</string>
+    <string name="detail_photo_id">Photo ID</string>
+    <string name="detail_delete_button">Delete Photo</string>
+    <string name="detail_delete_button_info">If you want to delete\n this photo, press here:</string>
 </resources>
