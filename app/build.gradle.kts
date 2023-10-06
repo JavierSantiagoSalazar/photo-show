@@ -1,6 +1,12 @@
+import com.example.photoshow.Libs
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.devtools.ksp")
+    id("androidx.navigation.safeargs.kotlin")
+    id("dagger.hilt.android.plugin")
+    id("org.jetbrains.kotlin.kapt")
 }
 
 android {
@@ -14,7 +20,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.example.photoshow.di.HiltTestRunner"
     }
 
     buildTypes {
@@ -27,21 +33,70 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
+    }
+    buildFeatures {
+        viewBinding = true
     }
 }
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.9.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation(project(":data"))
+    implementation(project(":domain"))
+    implementation(project(":usecases"))
+
+    implementation(Libs.AndroidX.coreKtx)
+    implementation(Libs.AndroidX.appCompat)
+    implementation(Libs.AndroidX.material)
+    implementation(Libs.AndroidX.constraintLayout)
+    implementation(Libs.AndroidX.recyclerView)
+
+    implementation(Libs.Kotlin.reflect)
+
+    implementation(Libs.Lottie.lottie)
+
+    implementation(Libs.AndroidX.Navigation.fragmentKtx)
+    implementation(Libs.AndroidX.Navigation.uiKtx)
+    implementation(Libs.AndroidX.Navigation.navCompose)
+
+    implementation(Libs.Glide.glide)
+    ksp(Libs.Glide.compiler)
+
+    implementation(Libs.OkHttp3.loginInterceptor)
+    implementation(Libs.Retrofit.retrofit)
+    implementation(Libs.Retrofit.converterGson)
+
+    implementation(Libs.Hilt.android)
+    kapt(Libs.Hilt.compiler)
+
+    implementation(Libs.Arrow.core)
+
+    implementation(Libs.AndroidX.Lifecycle.viewmodelKtx)
+    implementation(Libs.AndroidX.Lifecycle.runtimeKtx)
+
+    implementation(Libs.AndroidX.Room.runtime)
+    implementation(Libs.AndroidX.Room.ktx)
+    ksp(Libs.AndroidX.Room.compiler)
+
+    testImplementation(project(":testShared"))
+    testImplementation(project(":appTestShared"))
+    testImplementation(Libs.JUnit.junit)
+    testImplementation(Libs.Mockito.kotlin)
+    testImplementation(Libs.Mockito.inline)
+    testImplementation(Libs.Kotlin.Coroutines.test)
+    testImplementation(Libs.turbine)
+
+    androidTestImplementation(project(":appTestShared"))
+    androidTestImplementation(Libs.AndroidX.Test.Ext.junit)
+    androidTestImplementation(Libs.AndroidX.Test.Espresso.contrib)
+    androidTestImplementation(Libs.AndroidX.Test.runner)
+    androidTestImplementation(Libs.Hilt.test)
+    androidTestImplementation(Libs.Kotlin.Coroutines.test)
+    kspAndroidTest(Libs.Hilt.compiler)
+
 }

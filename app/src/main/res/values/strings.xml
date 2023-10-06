@@ -1,3 +1,27 @@
 <resources>
+    <!--Global-->
     <string name="app_name">PhotoShow</string>
+
+    <!--Photos Fragment-->
+    <string name="photos_title">Photos</string>
+    <string name="your_photos_sub_title">Your photos:</string>
+    <string name="snack_bar_try_again_message">Try again</string>
+    <string name="snack_bar_dismiss_message">Dismiss</string>
+    <string name="connectivity_error">Looks like you don\'t have internet connection, please try again.</string>
+    <string name="server_error">"Internal server error with code: "</string>
+    <string name="unknown_error">"Unknown error: "</string>
+    <string name="photos_were_deleted">"All the stacked photos were deleted satisfactory"</string>
+
+    <!--Detail Fragment-->
+    <string name="detail_photo_title">Photo title</string>
+    <string name="detail_album_id">Album ID</string>
+    <string name="detail_photo_id">Photo ID</string>
+    <string name="detail_delete_button">Delete Photo</string>
+    <string name="detail_delete_button_info">If you want to delete\n this photo, press here:</string>
+    <string name="alert_title">Delete photo</string>
+    <string name="alert_message">Are you sure you want to delete this photo?</string>
+    <string name="alert_option_yes">Yes</string>
+    <string name="alert_option_no">No</string>
+    <string name="photo_was_deleted">"The photo was deleted satisfactory"</string>
+    <string name="photo_was_saved">"The photo will be deleted when the internet is available again"</string>
 </resources>
