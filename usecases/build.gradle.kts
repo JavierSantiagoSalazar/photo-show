@@ -16,4 +16,10 @@ dependencies {
 
     implementation(Libs.Kotlin.Coroutines.core)
     implementation(Libs.JavaX.inject)
+
+    testImplementation(project(":testShared"))
+    testImplementation(Libs.JUnit.junit)
+    testImplementation(Libs.Mockito.kotlin)
+    testImplementation(Libs.Mockito.inline)
+    testImplementation(Libs.Kotlin.Coroutines.test)
 }
