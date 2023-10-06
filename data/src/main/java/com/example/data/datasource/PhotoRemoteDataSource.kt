@@ -6,4 +6,7 @@ import com.example.domain.Photo
 
 interface PhotoRemoteDataSource {
     suspend fun findPhotos(): Either<Error, List<Photo>>
+
+    suspend fun deletePhotos(photosId: List<Int>): Error?
+
 }
