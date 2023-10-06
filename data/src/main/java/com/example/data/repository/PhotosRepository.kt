@@ -14,18 +14,34 @@ class PhotosRepository @Inject constructor(
 
     val photos get() = localDataSource.photos
 
+    val photosToDelete get() = localDataSource.photosToDelete
+
     fun findById(id: Int): Flow<Photo> = localDataSource.findById(id)
 
     suspend fun requestPhotos(): Error? {
         if (localDataSource.isEmpty()) {
             val movies = remoteDataSource.findPhotos()
             movies.fold(ifLeft = { return it }) {
-                localDataSource.save(it)
+                localDataSource.savePhotos(it)
             }
         }
         return null
     }
 
-    suspend fun deletePhotoById(id: Int): Error? = localDataSource.deletePhotoById(id)
+    suspend fun savePhotoId(photoId: Int): Error? {
+        return localDataSource.saveIdToDelete(photoId)
+    }
 
+    suspend fun isIdsToDeleteEmpty(): Boolean {
+        return localDataSource.isIdsToDeleteEmpty()
+    }
+
+    suspend fun deletePhoto(photosId: List<Int>): Error? {
+        return remoteDataSource.deletePhotos(photosId) ?: deleteLocalPhoto(photosId)
+    }
+
+    private suspend fun deleteLocalPhoto(photosId: List<Int>): Error? {
+        return localDataSource.deletePhotosById(photosId)
+            ?: localDataSource.deletePhotosId(photosId)
+    }
 }

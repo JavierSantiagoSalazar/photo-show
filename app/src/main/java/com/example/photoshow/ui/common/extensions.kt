@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
@@ -132,4 +134,23 @@ fun View.showSnackBar(
 
 fun View.setVisibleOrGone(visible: Boolean) {
     visibility = if (visible) View.VISIBLE else View.INVISIBLE
+}
+
+fun Context.showToast(message: String) {
+    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+}
+
+fun Context.showConfirmationDialog(onConfirm: () -> Unit) {
+    AlertDialog.Builder(this)
+        .setTitle(R.string.alert_title)
+        .setMessage(R.string.alert_message)
+        .setPositiveButton(R.string.alert_option_yes) { dialog, _ ->
+            onConfirm()
+            dialog.dismiss()
+        }
+        .setNegativeButton(R.string.alert_option_no) { dialog, _ ->
+            dialog.dismiss()
+        }
+        .create()
+        .show()
 }

@@ -4,6 +4,7 @@ import arrow.core.Either
 import com.example.data.datasource.PhotoRemoteDataSource
 import com.example.domain.Error
 import com.example.domain.Photo
+import com.example.photoshow.data.toError
 import com.example.photoshow.data.tryCall
 import javax.inject.Inject
 
@@ -15,6 +16,18 @@ class PhotoRemoteDataSourceImpl @Inject constructor(
         photoRemoteService
             .listPhotos()
             .toDomainModel()
+    }
+
+    override suspend fun deletePhotos(photosId: List<Int>): Error? {
+        try {
+            photosId.map { photoId ->
+                photoRemoteService
+                    .deletePhoto(photoId)
+            }
+        } catch (e: Exception) {
+            return e.toError()
+        }
+        return null
     }
 }
 

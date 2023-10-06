@@ -15,9 +15,13 @@ class PhotoLocalDataSourceImpl @Inject constructor(
 
     override val photos: Flow<List<Photo>> = photoDao.getAllPhotos().map { it.toDomainModel() }
 
+    override val photosToDelete: Flow<List<Int>> = photoDao.getPhotosIdsToDelete().map { it.toIntModel() }
+
     override suspend fun isEmpty(): Boolean = photoDao.photosCount() == 0
 
-    override suspend fun save(photos: List<Photo>): Error? =
+    override suspend fun isIdsToDeleteEmpty(): Boolean = photoDao.photosIdsCount() == 0
+
+    override suspend fun savePhotos(photos: List<Photo>): Error? =
         tryCall {
             photoDao.insertPhotos(photos.fromDomainModel())
         }.fold(
@@ -28,9 +32,29 @@ class PhotoLocalDataSourceImpl @Inject constructor(
     override fun findById(id: Int): Flow<Photo> =
         photoDao.findById(id).map { it.toDomainModel() }
 
-    override suspend fun deletePhotoById(id: Int): Error? =
+    override suspend fun saveIdToDelete(photoId: Int): Error? =
         tryCall {
-            photoDao.deletePhotoById(id)
+            photoDao.insertPhotoId(photoId.fromIntModel())
+        }.fold(
+            ifLeft = { it },
+            ifRight = { null }
+        )
+
+    override suspend fun deletePhotosById(photosId: List<Int>): Error? =
+        tryCall {
+            photosId.map { photoId ->
+                photoDao.deletePhotoById(photoId)
+            }
+        }.fold(
+            ifLeft = { it },
+            ifRight = { null }
+        )
+
+    override suspend fun deletePhotosId(photosId: List<Int>): Error? =
+        tryCall {
+            photosId.map { photoId ->
+                photoDao.deletePhotoId(photoId)
+            }
         }.fold(
             ifLeft = { it },
             ifRight = { null }
@@ -60,3 +84,16 @@ private fun Photo.fromDomainModel(): DbPhoto =
         photoUrl = photoUrl,
         thumbnailPhotoUrl = thumbnailPhotoUrl
     )
+
+private fun List<Int>.fromIntModel(): List<DeletePhoto> =
+    map { it.fromIntModel() }
+
+private fun Int.fromIntModel(): DeletePhoto =
+    DeletePhoto(
+        idToDelete = this
+    )
+
+private fun List<DeletePhoto>.toIntModel(): List<Int> =
+    map { it.toIntModel() }
+
+private fun DeletePhoto.toIntModel(): Int = idToDelete

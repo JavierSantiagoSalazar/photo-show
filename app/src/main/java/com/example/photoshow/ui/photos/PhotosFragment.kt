@@ -2,6 +2,7 @@ package com.example.photoshow.ui.photos
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -12,6 +13,7 @@ import com.example.photoshow.ui.common.diff
 import com.example.photoshow.ui.common.launchAndCollect
 import com.example.photoshow.ui.common.setVisibleOrGone
 import com.example.photoshow.ui.common.showErrorSnackBar
+import com.example.photoshow.ui.common.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -19,7 +21,7 @@ class PhotosFragment : Fragment(R.layout.fragment_photos) {
 
     private val viewModel: PhotosViewModel by viewModels()
 
-    private val adapter = PhotosAdapter{ onPhotoClicked(it) }
+    private val adapter = PhotosAdapter { onPhotoClicked(it) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -27,6 +29,7 @@ class PhotosFragment : Fragment(R.layout.fragment_photos) {
         val binding = FragmentPhotosBinding.bind(view).apply { recyclerPhotos.adapter = adapter }
 
         with(viewModel.state) {
+
             diff(this, { it.loading }) {
                 it.let { binding.progress.setVisibleOrGone(it) }
             }
@@ -44,6 +47,13 @@ class PhotosFragment : Fragment(R.layout.fragment_photos) {
             }
         }
 
+        viewLifecycleOwner.launchAndCollect(viewModel.state) { state ->
+            state.wereSuccessfullyDeleted.takeIf { it }?.let {
+                requireContext().showToast(getString(R.string.photos_were_deleted))
+            }
+        }
+
+        viewModel.deleteStackedPhotos()
         viewModel.getPhotos()
     }
 
