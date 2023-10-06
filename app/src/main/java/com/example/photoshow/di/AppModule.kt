@@ -1,20 +1,15 @@
 package com.example.photoshow.di
 
 import android.app.Application
-import androidx.lifecycle.SavedStateHandle
 import androidx.room.Room
 import com.example.photoshow.data.database.PhotoDao
 import com.example.photoshow.data.database.PhotoShowDatabase
 import com.example.photoshow.data.server.PhotoRemoteService
 import com.example.photoshow.di.annotations.ApiUrl
-import com.example.photoshow.di.annotations.PhotoId
-import com.example.photoshow.ui.detail.DetailFragmentArgs
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ViewModelComponent
-import dagger.hilt.android.scopes.ViewModelScoped
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

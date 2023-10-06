@@ -1,16 +1,16 @@
 package com.example.photoshow.data.database
 
 import com.example.data.datasource.PhotoLocalDataSource
-import com.example.domain.Photo
 import com.example.domain.Error
+import com.example.domain.Photo
 import com.example.photoshow.data.tryCall
-import com.example.photoshow.data.database.Photo as DbPhoto
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
+import com.example.photoshow.data.database.Photo as DbPhoto
 
 class PhotoLocalDataSourceImpl @Inject constructor(
-    private val photoDao: PhotoDao
+    private val photoDao: PhotoDao,
 ) : PhotoLocalDataSource {
 
     override val photos: Flow<List<Photo>> = photoDao.getAllPhotos().map { it.toDomainModel() }
@@ -26,7 +26,7 @@ class PhotoLocalDataSourceImpl @Inject constructor(
             photoDao.insertPhotos(photos.fromDomainModel())
         }.fold(
             ifLeft = { it },
-            ifRight = { null }
+            ifRight = { null },
         )
 
     override fun findById(id: Int): Flow<Photo> =
@@ -37,7 +37,7 @@ class PhotoLocalDataSourceImpl @Inject constructor(
             photoDao.insertPhotoId(photoId.fromIntModel())
         }.fold(
             ifLeft = { it },
-            ifRight = { null }
+            ifRight = { null },
         )
 
     override suspend fun deletePhotosById(photosId: List<Int>): Error? =
@@ -47,7 +47,7 @@ class PhotoLocalDataSourceImpl @Inject constructor(
             }
         }.fold(
             ifLeft = { it },
-            ifRight = { null }
+            ifRight = { null },
         )
 
     override suspend fun deletePhotosId(photosId: List<Int>): Error? =
@@ -57,7 +57,7 @@ class PhotoLocalDataSourceImpl @Inject constructor(
             }
         }.fold(
             ifLeft = { it },
-            ifRight = { null }
+            ifRight = { null },
         )
 }
 
@@ -70,7 +70,7 @@ private fun DbPhoto.toDomainModel(): Photo =
         albumId = albumId,
         title = title,
         photoUrl = photoUrl,
-        thumbnailPhotoUrl = thumbnailPhotoUrl
+        thumbnailPhotoUrl = thumbnailPhotoUrl,
     )
 
 private fun List<Photo>.fromDomainModel(): List<DbPhoto> =
@@ -82,7 +82,7 @@ private fun Photo.fromDomainModel(): DbPhoto =
         albumId = albumId,
         title = title,
         photoUrl = photoUrl,
-        thumbnailPhotoUrl = thumbnailPhotoUrl
+        thumbnailPhotoUrl = thumbnailPhotoUrl,
     )
 
 private fun List<Int>.fromIntModel(): List<DeletePhoto> =
@@ -90,7 +90,7 @@ private fun List<Int>.fromIntModel(): List<DeletePhoto> =
 
 private fun Int.fromIntModel(): DeletePhoto =
     DeletePhoto(
-        idToDelete = this
+        idToDelete = this,
     )
 
 private fun List<DeletePhoto>.toIntModel(): List<Int> =
