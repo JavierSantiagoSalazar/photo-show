@@ -1,7 +1,8 @@
-package com.example.interrapidismotest.page
+package com.example.photoshow.page
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule
-import com.example.interrapidismotest.ui.main.MainActivity
+import com.example.photoshow.ui.NavHostActivity
+import com.example.photoshow.ui.splash.SplashScreenActivity
 import dagger.hilt.android.testing.HiltAndroidRule
 import org.junit.Before
 import org.junit.Rule
@@ -12,7 +13,7 @@ open class BaseUiTest {
     val hiltRule = HiltAndroidRule(this)
 
     @get:Rule(order = 1)
-    val activityRule = ActivityScenarioRule(MainActivity::class.java)
+    val activityRule = ActivityScenarioRule(NavHostActivity::class.java)
 
     @Before
     open fun setup() {

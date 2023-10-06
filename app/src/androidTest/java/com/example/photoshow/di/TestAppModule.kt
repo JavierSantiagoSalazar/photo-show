@@ -1,13 +1,12 @@
-package com.example.interrapidismotest.di
+package com.example.photoshow.di
 
 import android.app.Application
 import androidx.room.Room
-import com.example.interrapidismotest.apptestshared.FakeTableRemoteService
-import com.example.interrapidismotest.apptestshared.buildRemoteTables
-import com.example.interrapidismotest.data.database.TableDao
-import com.example.interrapidismotest.data.database.TableDatabase
-import com.example.interrapidismotest.data.server.TableRemoteService
-import com.example.interrapidismotest.di.annotations.User
+import com.example.photoshow.apptestshared.FakePhotoRemoteService
+import com.example.photoshow.apptestshared.buildRemotePhotos
+import com.example.photoshow.data.database.PhotoDao
+import com.example.photoshow.data.database.PhotoShowDatabase
+import com.example.photoshow.data.server.PhotoRemoteService
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
@@ -24,37 +23,21 @@ object TestAppModule {
 
     @Provides
     @Singleton
-    @User
-    fun provideUser(): String = "admin"
-
-    @Provides
-    @Singleton
     fun provideDatabase(app: Application) = Room.inMemoryDatabaseBuilder(
         app,
-        TableDatabase::class.java
+        PhotoShowDatabase::class.java
     ).build()
 
     @Provides
     @Singleton
-    fun provideTableDao(db: TableDatabase): TableDao = db.tableDao()
+    fun provideTableDao(db: PhotoShowDatabase): PhotoDao = db.photoDao()
 
     @Provides
     @Reusable
-    fun provideTableRemoteService(): TableRemoteService =
-        FakeTableRemoteService(
-            buildRemoteTables(
-                "TableName1",
-                "TableName2",
-                "TableName3",
-                "TableName4",
-                "TableName5",
-                "TableName6",
-                "TableName7",
-                "TableName8",
-                "TableName9",
-                "TableName10",
-                "TableName11",
-                "TableName12"
+    fun providePhotoRemoteService(): PhotoRemoteService =
+        FakePhotoRemoteService(
+            buildRemotePhotos(
+                1, 2, 3, 4, 5, 6, 7, 8, 9, 10
             )
         )
 }

@@ -1,59 +1,70 @@
-package com.example.interrapidismotest.ui.menu
+package com.example.photoshow.ui.photos
 
-import com.example.interrapidismotest.R
-import com.example.interrapidismotest.page.*
+import com.example.photoshow.R
+import com.example.photoshow.page.Page
+import com.example.photoshow.page.clickButton
+import com.example.photoshow.page.clickInRecyclerItem
+import com.example.photoshow.page.clickOnText
+import com.example.photoshow.page.verifyItemTextInRecyclerView
+import com.example.photoshow.page.verifyTextInChild
+import com.example.photoshow.page.verifyTextInView
+import com.example.photoshow.page.verifyTextIsNotDisplayed
 
 
-class MenuPage : Page() {
+class PhotoPage : Page() {
 
-    fun verifyRedText(text: String): MenuPage {
-        verifyTextInView(R.id.tvEmpty, text)
+    fun verifyTitleText(view: Int, text: String): PhotoPage {
+        verifyTextInView(view, text)
         return this
     }
 
-    fun verifyGreenText(text: String): MenuPage {
-        verifyTextInView(R.id.tvFull, text)
+    fun verifyPhotoWasDeleted(photoTitle: String): PhotoPage {
+        verifyTextIsNotDisplayed(photoTitle)
         return this
     }
 
-    fun clickButtonById(buttonId: Int): MenuPage{
-        clickButton(buttonId)
+    fun clickDeleteButton(): PhotoPage {
+        clickButton(R.id.fabDelete)
         return this
     }
 
-    fun checkIfTextIsNotDisplayedById(id: Int): MenuPage{
-        checkIfViewIsNotDisplayed(id)
+    fun clickYesButton(): PhotoPage {
+        clickOnText("Yes")
         return this
     }
 
-    fun checkIfListIsDisplayed(): MenuPage{
-        checkIfViewIsDisplayed(R.id.recyclerTables)
+    fun verifyToolbarTitle(title: String): PhotoPage {
+        verifyTextInChild(R.id.toolbar, title)
         return this
     }
 
-    fun verifyIfButtonChangeText(text: String): MenuPage{
-        verifyTextInView(R.id.showDataButton, text)
+    fun verifyText(view: Int, text: String): PhotoPage {
+        verifyTextInView(view, text)
         return this
     }
 
-
-    fun checkIfListNotDisplayed(): MenuPage{
-        checkIfViewIsNotDisplayed(R.id.recyclerTables)
+    fun verifyPhotoTitleInRecycler(recyclerId: Int, title: String): PhotoPage {
+        verifyItemTextInRecyclerView(recyclerId, title)
         return this
     }
 
-    fun clickInEditText(): MenuPage{
-        clickViewById(R.id.etFilter)
+    fun clickInPhotoRecyclerItem(recyclerId: Int, itemPosition: Int): PhotoPage {
+        clickInRecyclerItem(recyclerId, itemPosition)
         return this
     }
 
-    fun typeTableName(): MenuPage{
-        typeTextInView(R.id.etFilter, "TableName6")
+    fun verifyPhotoTitle(photoTitle: String): PhotoPage {
+        verifyTextInView(R.id.tvTitle, photoTitle)
         return this
     }
 
-    fun verifyTableNameInRecycler(recyclerId: Int, tableName: String): MenuPage {
-        verifyItemTextInRecyclerView(recyclerId, tableName)
+    fun verifyPhotoId(photoId: String): PhotoPage {
+        verifyTextInView(R.id.tvPhotoId, photoId)
+        return this
+    }
+
+    fun verifyAlbumId(albumId: String): PhotoPage {
+        verifyTextInView(R.id.tvAlbumId, albumId)
         return this
     }
 }

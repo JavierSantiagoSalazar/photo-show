@@ -1,4 +1,4 @@
-package com.example.interrapidismotest.page
+package com.example.photoshow.page
 
 import androidx.test.espresso.Espresso
 
