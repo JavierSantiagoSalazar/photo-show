@@ -20,7 +20,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.example.photoshow.di.HiltTestRunner"
     }
 
     buildTypes {
@@ -56,6 +56,8 @@ dependencies {
     implementation(Libs.AndroidX.constraintLayout)
     implementation(Libs.AndroidX.recyclerView)
 
+    implementation(Libs.Kotlin.reflect)
+
     implementation(Libs.Lottie.lottie)
 
     implementation(Libs.AndroidX.Navigation.fragmentKtx)
@@ -81,10 +83,20 @@ dependencies {
     implementation(Libs.AndroidX.Room.ktx)
     ksp(Libs.AndroidX.Room.compiler)
 
-    testImplementation (project(":testShared"))
-    testImplementation (Libs.JUnit.junit)
-    testImplementation (Libs.Mockito.kotlin)
-    testImplementation (Libs.Mockito.inline)
-    testImplementation (Libs.Kotlin.Coroutines.test)
-    testImplementation (Libs.turbine)
+    testImplementation(project(":testShared"))
+    testImplementation(project(":appTestShared"))
+    testImplementation(Libs.JUnit.junit)
+    testImplementation(Libs.Mockito.kotlin)
+    testImplementation(Libs.Mockito.inline)
+    testImplementation(Libs.Kotlin.Coroutines.test)
+    testImplementation(Libs.turbine)
+
+    androidTestImplementation(project(":appTestShared"))
+    androidTestImplementation(Libs.AndroidX.Test.Ext.junit)
+    androidTestImplementation(Libs.AndroidX.Test.Espresso.contrib)
+    androidTestImplementation(Libs.AndroidX.Test.runner)
+    androidTestImplementation(Libs.Hilt.test)
+    androidTestImplementation(Libs.Kotlin.Coroutines.test)
+    kspAndroidTest(Libs.Hilt.compiler)
+
 }

@@ -10,6 +10,7 @@ object Libs {
 
         const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
         const val jvmPlugin = "org.jetbrains.kotlin.jvm:kot:$version"
+        const val reflect = "org.jetbrains.kotlin:kotlin-reflect:1.8.21"
 
         object Coroutines {
             private const val version = "1.6.4"
