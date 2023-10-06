@@ -1,7 +1,6 @@
 package com.example.photoshow.ui.detail
 
 import android.os.Bundle
-import android.os.Message
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -9,7 +8,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.domain.Photo
 import com.example.photoshow.R
 import com.example.photoshow.databinding.FragmentDetailBinding
-import com.example.photoshow.ui.common.diff
 import com.example.photoshow.ui.common.launchAndCollect
 import com.example.photoshow.ui.common.loadUrl
 import com.example.photoshow.ui.common.showConfirmationDialog

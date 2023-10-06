@@ -17,15 +17,15 @@ import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.domain.Error
-import com.example.domain.Error.*
+import com.example.domain.Error.Connectivity
+import com.example.domain.Error.Server
+import com.example.domain.Error.Unknown
 import com.example.photoshow.R
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
-import com.facebook.shimmer.Shimmer
-import com.facebook.shimmer.ShimmerDrawable
 
 
 inline fun <T : Any> basicDiffUtil(
@@ -42,25 +42,6 @@ inline fun <T : Any> basicDiffUtil(
 fun ImageView.loadUrl(url: String) {
     Glide.with(context).load(url)
         .diskCacheStrategy(DiskCacheStrategy.ALL)
-        .into(this)
-}
-
-fun ImageView.loadUrlWithShimmer(url: String) {
-    val shimmer = Shimmer.AlphaHighlightBuilder()
-        .setDuration(1200)
-        .setBaseAlpha(0.7f)
-        .setHighlightAlpha(0.9f)
-        .setDirection(Shimmer.Direction.LEFT_TO_RIGHT)
-        .setAutoStart(true)
-        .build()
-
-    val shimmerDrawable = ShimmerDrawable().apply {
-        setShimmer(shimmer)
-    }
-
-    Glide.with(context)
-        .load(url)
-        .placeholder(shimmerDrawable)
         .into(this)
 }
 

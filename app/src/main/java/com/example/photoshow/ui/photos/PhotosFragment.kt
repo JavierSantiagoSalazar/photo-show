@@ -1,8 +1,11 @@
 package com.example.photoshow.ui.photos
 
+import android.content.IntentFilter
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
+import androidx.core.content.ContextCompat.RECEIVER_NOT_EXPORTED
+import androidx.core.content.ContextCompat.registerReceiver
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -11,6 +14,7 @@ import com.example.photoshow.R
 import com.example.photoshow.databinding.FragmentPhotosBinding
 import com.example.photoshow.ui.common.diff
 import com.example.photoshow.ui.common.launchAndCollect
+import com.example.photoshow.ui.common.networkhelper.ConnectivityReceiver
 import com.example.photoshow.ui.common.setVisibleOrGone
 import com.example.photoshow.ui.common.showErrorSnackBar
 import com.example.photoshow.ui.common.showToast
@@ -18,6 +22,8 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class PhotosFragment : Fragment(R.layout.fragment_photos) {
+
+    private val connectivityReceiver = ConnectivityReceiver { viewModel.deleteStackedPhotos() }
 
     private val viewModel: PhotosViewModel by viewModels()
 
@@ -53,7 +59,9 @@ class PhotosFragment : Fragment(R.layout.fragment_photos) {
             }
         }
 
-        viewModel.deleteStackedPhotos()
+        val filter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
+        registerReceiver(requireContext(),connectivityReceiver, filter, RECEIVER_NOT_EXPORTED)
+
         viewModel.getPhotos()
     }
 
