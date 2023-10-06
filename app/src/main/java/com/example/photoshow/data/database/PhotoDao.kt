@@ -22,7 +22,7 @@ interface PhotoDao {
     fun findById(id: Int): Flow<Photo>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertPhotos(movies: List<Photo>)
+    suspend fun insertPhotos(photos: List<Photo>)
 
     @Query("DELETE FROM Photo WHERE id = :id")
     suspend fun deletePhotoById(id: Int)
