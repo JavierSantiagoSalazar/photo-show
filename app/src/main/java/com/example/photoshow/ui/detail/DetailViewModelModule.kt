@@ -16,7 +16,7 @@ class DetailViewModelModule {
     @Provides
     @ViewModelScoped
     @PhotoId
-    fun provideProgramId(savedStateHandle: SavedStateHandle) =
+    fun providePhotoId(savedStateHandle: SavedStateHandle) =
         DetailFragmentArgs.fromSavedStateHandle(savedStateHandle).photoId
 
 }

@@ -23,7 +23,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailViewModel @Inject constructor(
     @PhotoId private val photoId: Int,
-    findMovieUseCase: FindPhotoUseCase,
+    findPhotoUseCase: FindPhotoUseCase,
     private val networkHelper: NetworkHelper,
     private val deletePhotosUseCase: DeletePhotosUseCase,
     private val savePhotoIdToDeleteUseCase: SavePhotoIdToDeleteUseCase
@@ -35,7 +35,7 @@ class DetailViewModel @Inject constructor(
     init {
         _state.value = _state.value.copy(isSuccessfullyDeleted = false, isSuccessfullySaved = false)
         viewModelScope.launch {
-            findMovieUseCase(photoId)
+            findPhotoUseCase(photoId)
                 .catch { cause -> _state.update { it.copy(error = cause.toError()) } }
                 .collect { photo -> _state.update { UiState(photo = photo) } }
         }

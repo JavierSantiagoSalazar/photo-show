@@ -49,7 +49,7 @@ class DetailViewModelTest {
         whenever(findPhotoUseCase(2)).thenReturn(flowOf(photo))
         vm = DetailViewModel(
             photoId = 2,
-            findMovieUseCase = findPhotoUseCase,
+            findPhotoUseCase = findPhotoUseCase,
             networkHelper = networkHelper,
             deletePhotosUseCase = deletePhotoUseCase,
             savePhotoIdToDeleteUseCase = savePhotoIdToDeleteUseCase

@@ -20,8 +20,8 @@ class PhotosRepository @Inject constructor(
 
     suspend fun requestPhotos(): Error? {
         if (localDataSource.isEmpty()) {
-            val movies = remoteDataSource.findPhotos()
-            movies.fold(ifLeft = { return it }) {
+            val photos = remoteDataSource.findPhotos()
+            photos.fold(ifLeft = { return it }) {
                 localDataSource.savePhotos(it)
             }
         }
