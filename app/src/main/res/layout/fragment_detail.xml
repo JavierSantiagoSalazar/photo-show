@@ -70,7 +70,6 @@
                         android:text="@string/detail_photo_title"
                         android:textAlignment="center"
                         android:textAppearance="?attr/textAppearanceBody1"
-                        android:textColor="@color/black"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -88,7 +87,6 @@
                         android:maxLines="3"
                         android:textAlignment="center"
                         android:textAppearance="?attr/textAppearanceBody1"
-                        android:textColor="@color/black"
                         tools:text="officia porro iure quia iusto qui ipsa ut modi" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
@@ -116,7 +114,6 @@
                             android:text="@string/detail_album_id"
                             android:textAlignment="center"
                             android:textAppearance="?attr/textAppearanceBody1"
-                            android:textColor="@color/black"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
@@ -135,7 +132,6 @@
                             android:maxLines="3"
                             android:textAlignment="center"
                             android:textAppearance="?attr/textAppearanceBody1"
-                            android:textColor="@color/black"
                             tools:text="83" />
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -154,7 +150,6 @@
                             android:text="@string/detail_photo_id"
                             android:textAlignment="center"
                             android:textAppearance="?attr/textAppearanceBody1"
-                            android:textColor="@color/black"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
@@ -173,7 +168,6 @@
                             android:maxLines="3"
                             android:textAlignment="center"
                             android:textAppearance="?attr/textAppearanceBody1"
-                            android:textColor="@color/black"
                             tools:text="35999" />
 
                     </androidx.appcompat.widget.LinearLayoutCompat>

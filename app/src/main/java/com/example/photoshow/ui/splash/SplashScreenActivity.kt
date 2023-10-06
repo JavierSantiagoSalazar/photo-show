@@ -23,6 +23,10 @@ class SplashScreenActivity : AppCompatActivity() {
                 .setStartDelay(4000)
                 .translationX(-1500F).duration = 1000
 
+            binding.tvAppName.animate()
+                .setStartDelay(4000)
+                .translationX(-1500F).duration = 1000
+
             startActivity(Intent(this, NavHostActivity::class.java))
             finish()
         }, 4000)

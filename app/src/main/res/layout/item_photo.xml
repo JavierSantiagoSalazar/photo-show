@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_marginVertical="@dimen/common_padding_min"
     android:elevation="50dp"
-    app:cardBackgroundColor="#DFD3AC9F"
+    app:cardBackgroundColor="@color/color_secondary"
     app:cardCornerRadius="10dp"
     app:contentPadding="@dimen/common_padding_min">
 
@@ -35,6 +35,7 @@
             android:ellipsize="end"
             android:lineSpacingExtra="2dp"
             android:padding="@dimen/common_padding_min"
+            android:textColor="@color/design_default_color_on_secondary"
             android:maxLines="3"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
