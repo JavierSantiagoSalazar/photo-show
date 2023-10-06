@@ -81,7 +81,10 @@ dependencies {
     implementation(Libs.AndroidX.Room.ktx)
     ksp(Libs.AndroidX.Room.compiler)
 
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    testImplementation (project(":testShared"))
+    testImplementation (Libs.JUnit.junit)
+    testImplementation (Libs.Mockito.kotlin)
+    testImplementation (Libs.Mockito.inline)
+    testImplementation (Libs.Kotlin.Coroutines.test)
+    testImplementation (Libs.turbine)
 }
